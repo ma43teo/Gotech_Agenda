@@ -4,6 +4,8 @@ import { CalendarMode} from 'ionic2-calendar';
 import { CalendarComponent } from 'ionic2-calendar';
 import { EventDetailsPage } from '../pages/school/event-details/event-details.page';
 import { Router } from '@angular/router';
+import firebase from 'firebase/compat/app';
+import 'firebase/firestore';
 
 
 
@@ -105,13 +107,29 @@ export class EventsPage implements OnInit {
      
    } 
    ];
+  eventCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 
   constructor(public modalController: ModalController, private router: Router, private alertController: AlertController) { 
     this.showAddEvent = false;
     this.allEvents = [];
     this.minDate = '2023-03-20'; 
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDQfZZhqWuq8JtDKC3HIZz9UOaeQF3ga6Q",
+        authDomain: "agendaautenticacionionic.firebaseapp.com",
+        projectId: "agendaautenticacionionic",
+        storageBucket: "agendaautenticacionionic.appspot.com",
+        messagingSenderId: "179527070115",
+        appId: "1:179527070115:web:debc379e0b5efcbb126a16"
+      // Aquí debes colocar los datos de tu proyecto de Firebase
+    };
+    firebase.initializeApp(firebaseConfig);
+  
+    // Crea una referencia a la colección de eventos en Firebase
+    this.eventCollection = firebase.firestore().collection('eventos');
+  
   }
+  
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alert',
@@ -183,7 +201,18 @@ export class EventsPage implements OnInit {
           },
           {
             text: 'Continuar',
-            handler: () => {
+            handler: async () => {
+              // Guarda el evento en Firebase
+              await this.eventCollection.add({
+                title: this.newEvent.title,
+                startTime: new Date(this.newEvent.startTime),
+                endTime: new Date(this.newEvent.endTime),
+                description: this.newEvent.description,
+                img: this.newEvent.img,
+                allDay: false
+              });
+  
+              // Agrega el evento a la lista de eventos
               this.allEvents.push({
                 title: this.newEvent.title,
                 startTime: new Date(this.newEvent.startTime),
@@ -192,13 +221,23 @@ export class EventsPage implements OnInit {
                 img: this.newEvent.img,
                 allDay: false
               } as IEvent);
-              console.log(this.newEvent);
             }
           }
         ]
       });
       await alert.present();
     } else {
+      // Guarda el evento en Firebase
+      await this.eventCollection.add({
+        title: this.newEvent.title,
+        startTime: new Date(this.newEvent.startTime),
+        endTime: new Date(this.newEvent.endTime),
+        description: this.newEvent.description,
+        img: this.newEvent.img,
+        allDay: false
+      });
+  
+      // Agrega el evento a la lista de eventos
       this.allEvents.push({
         title: this.newEvent.title,
         startTime: new Date(this.newEvent.startTime),
@@ -207,12 +246,22 @@ export class EventsPage implements OnInit {
         img: this.newEvent.img,
         allDay: false
       } as IEvent);
-      console.log(this.newEvent);
     }
+  
+    // Cierra el formulario
+    this.showAddEvent = false;
+    this.newEvent = {
+      title:'',
+      description:'',
+      startTime: new Date().toISOString(),
+      endTime: new Date().toISOString(),
+      img:'',
+}
+
   }
-  
-  
+
   presentAlertPrompt(){
     this.router.navigate(['settings'])
-  }
+
+  }
 }
