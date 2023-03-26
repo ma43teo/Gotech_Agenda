@@ -1,0 +1,52 @@
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  border-radius: 100%;
+  max-width: 100%; /* para asegurarse de que la imagen no sea más ancha que el contenedor */
+}
+
+/* Estilos para el título en el header */
+ion-title {
+  text-align: center;
+}
+
+/* Estilos para los labels y los inputs */
+ion-label {
+  display: block;
+  margin-bottom: 5px;
+  border-radius: 5%;
+}
+
+ion-input {
+  width: 100%;
+  padding: 0px;
+  border: 10px solid #063ecb;
+  border-radius: 3px;
+  border-radius: 5%;
+  box-sizing: border-box; /* añadido para tener en cuenta el padding y el borde en el ancho del elemento */
+}
+
+/* Estilos para los botones */
+ion-button {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+}
+
+/* Estilos para el botón de olvidar contraseña */
+button {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+}

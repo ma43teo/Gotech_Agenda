@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="container">
+  <img src="https://mateogutierrez.neocities.org/img/Fondoo.png" alt="Imagen de encabezado">
+  <ion-label>Correo Electronico</ion-label><ion-input [(ngModel)]="Usuario"></ion-input>
+  <br/>
+  <ion-label>Contraseña</ion-label><ion-input [(ngModel)]="Clave" type="password"></ion-input>
+  <ion-button (click)="validarCampos()">Ingresar</ion-button>
+  <br/>
+  <ion-button color="medium" (click)="Register()">Registrarme</ion-button>
+  <br/>
+  <button ion-button color="danger" (click)="Password()" outline>Ups!....Olvide mi Contraseña :C</button>
+</ion-content>

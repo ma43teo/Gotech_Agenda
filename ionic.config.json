@@ -1,0 +1,7 @@
+{
+  "name": "Agenda de Viajes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

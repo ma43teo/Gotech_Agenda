@@ -1,0 +1,64 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+  }
+  
+  ion-content {
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  ion-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  ion-input {
+    width: 100%;
+    padding: 0px;
+    border: 2px solid #063ecb;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  ion-button {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    border-radius: 100%;
+    max-width: 100%; 
+  }
+
+  
+  /* Alinear el título en el centro del encabezado */
+  ion-title {
+    text-align: center;
+  }
+  
+  /* Cambiar el tamaño y el estilo de la fuente del título */
+  ion-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Cambiar el color del texto del título */
+  ion-title {
+    color: #ffffff;
+  }
+  
+  /* Cambiar el color de fondo de la barra de herramientas */
+  ion-toolbar {
+    background-color: #20d24a;
+  }

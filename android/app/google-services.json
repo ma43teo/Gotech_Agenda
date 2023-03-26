@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "101472785279",
+    "project_id": "agendaautenticacionionic-dc719",
+    "storage_bucket": "agendaautenticacionionic-dc719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101472785279:android:ef53ae5384e302abfa804a",
+        "android_client_info": {
+          "package_name": "com.agenda.company"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101472785279-vmq2ek3ph3juchnrptl09upvbv7m0d3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB60C8jEryKEryYdG4lz_GyTmx7n1Mox8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101472785279-vmq2ek3ph3juchnrptl09upvbv7m0d3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

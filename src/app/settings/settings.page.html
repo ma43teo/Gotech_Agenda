@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Configuraciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="container">
+  <div class="header-image"></div> <!-- Agregamos una div con la clase "header-image" para la imagen -->
+  <ion-content padding>
+<ion-list>
+  <ion-item>
+    <ion-icon slot="start" name="moon"></ion-icon>
+    <ion-label>Cambiar tema</ion-label>
+    <ion-toggle slot="end"
+    [ngModel]="darkMode"
+    (ionChange)="cambio()"></ion-toggle>
+  </ion-item>
+</ion-list>
+    <img src="https://mateogutierrez.neocities.org/img/Fondoo.png" alt="Imagen de encabezado">
+    <ion-button color="medium" (click)="Cancel()">Cancelar</ion-button>
+    <ion-button (click)="authentication()">Cerrar Sesión</ion-button>
+  </ion-content>
+</div>

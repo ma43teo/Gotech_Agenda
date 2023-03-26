@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="container">
+  <div class="header-image"></div> <!-- Agregamos una div con la clase "header-image" para la imagen -->
+  <ion-content padding>
+    <img src="https://mateogutierrez.neocities.org/img/Fondoo.png" alt="Imagen de encabezado">
+    <ion-label>Correo Electronico</ion-label>
+    <ion-input [(ngModel)]="Usuario"></ion-input>
+    <br/>
+    <ion-label>Contraseña</ion-label>
+    <ion-input [(ngModel)]="Clave" type="password"></ion-input>
+    <br/>
+    <ion-label>Confirmar Contraseña</ion-label>
+    <ion-input [(ngModel)]="cclave" type="password"></ion-input>
+    <ion-button color="medium" (click)="Cancel()">Cancelar</ion-button>
+    <ion-button (click)="Register()">Registrarse</ion-button>
+  </ion-content>
+</div>
