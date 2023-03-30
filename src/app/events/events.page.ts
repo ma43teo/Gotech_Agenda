@@ -32,6 +32,7 @@ export interface IEvent {
 })
 
 export class EventsPage implements OnInit {
+  
   minDate: string;
 
   allEvents: IEvent[];
@@ -142,9 +143,22 @@ export class EventsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.allEvents = this.myData;
-
+    this.eventCollection.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const eventData = doc.data();
+        const event: IEvent = {
+          title: eventData['title'],
+          description: eventData['description'],
+          startTime: eventData['startTime'].toDate(),
+          endTime: eventData['endTime'].toDate(),
+          img: eventData['img'],
+          allDay: eventData['allDay']
+        };
+        this.allEvents.push(event);
+      });
+    });
   }
+
 
   onViewTitleChanged(title:string){
     this.currentMonth = title;
@@ -263,5 +277,5 @@ export class EventsPage implements OnInit {
   presentAlertPrompt(){
     this.router.navigate(['settings'])
 
-  }
+  }
 }

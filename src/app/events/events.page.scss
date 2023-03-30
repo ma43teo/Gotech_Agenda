@@ -12,3 +12,11 @@
   background-color: #ef810b;
 color:#fff;
 }
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  border-radius: 100%;
+  max-width: 100%; /* para asegurarse de que la imagen no sea más ancha que el contenedor */
+}

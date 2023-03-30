@@ -36,4 +36,15 @@ export class RegisterPage implements OnInit {
   Cancel(){
     this.router.navigate(['login'])
   }
+  togglePassword() {
+    const passwordField: any = document.getElementById('password-field');
+    const icon: any = document.getElementById('password-icon');
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      icon.name = 'eye-off';
+    } else {
+      passwordField.type = 'password';
+      icon.name = 'eye';
+    }
+  }
 }

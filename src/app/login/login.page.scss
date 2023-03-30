@@ -29,24 +29,30 @@ ion-label {
 }
 
 ion-input {
-  width: 100%;
+  width: 90%;
   padding: 0px;
-  border: 10px solid #063ecb;
-  border-radius: 3px;
-  border-radius: 5%;
-  box-sizing: border-box; /* añadido para tener en cuenta el padding y el borde en el ancho del elemento */
+  border:solid 5px #063ecb;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+  
+   /* añadido para tener en cuenta el padding y el borde en el ancho del elemento */
 }
 
 /* Estilos para los botones */
 ion-button {
   display: block;
   margin: 10px auto;
-  width: 100%;
+  width: 80%;
 }
 
 /* Estilos para el botón de olvidar contraseña */
 button {
   display: block;
   margin: 10px auto;
-  width: 100%;
+  width: 80%;
+}
+ion-input.usu{
+  width:75%;
+  margin-left:30px;
 }
