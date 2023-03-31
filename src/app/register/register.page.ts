@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -15,12 +16,18 @@ export class RegisterPage implements OnInit {
 
 
   constructor(private autenticador: AngularFireAuth,
-              private router: Router ) { }
+              private router: Router,
+              public alertController: AlertController){ }
 
-  Register() {
+  async Register() {
    const { Usuario, Clave, cclave } = this;
     if (Clave !== cclave) {
-      console.log('Contraseñas no coinciden.');  
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Contraseñas no coinciden',
+        buttons: ['OK']
+      });
+      await alert.present(); 
     }else{
       try{
         const result = this.autenticador.createUserWithEmailAndPassword( Usuario, Clave)
@@ -41,10 +48,10 @@ export class RegisterPage implements OnInit {
     const icon: any = document.getElementById('password-icon');
     if (passwordField.type === 'password') {
       passwordField.type = 'text';
-      icon.name = 'eye-off';
+      icon.name = 'eye';
     } else {
       passwordField.type = 'password';
-      icon.name = 'eye';
+      icon.name='eye-off';
     }
   }
 }

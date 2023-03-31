@@ -43,17 +43,17 @@ export class LoginPage implements OnInit {
       await alert.present();
     }else{
       this.Login();
-  }
-  }
+}
+}
 togglePassword() {
   const passwordField: any = document.getElementById('password-field');
   const icon: any = document.getElementById('password-icon');
   if (passwordField.type === 'password') {
     passwordField.type = 'text';
-    icon.name = 'eye-off';
+    icon.name = 'eye';
   } else {
     passwordField.type = 'password';
-    icon.name = 'eye';
-  }
+    icon.name = 'eye-off';
+}
 }
 }
