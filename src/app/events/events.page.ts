@@ -58,56 +58,6 @@ export class EventsPage implements OnInit {
 
   @ViewChild(CalendarComponent, { static: false }) myCal!: CalendarComponent;
 
-
-  myData = [
-    {
-     title: 'Relleno',
-     description: 'What is Lorem Ipsum?',
-     startTime: new Date(2023,4,22,12,11,11),
-     endTime: new Date(2023,4,22,14,11,11),
-     img: 'https://picsum.photos/200',
-     allDay: false
-
-     
-    },
-    {
-     title: 'Viaje de Mateo',
-     description: 'el Señor mateo viajara a roma el dia 22',
-     startTime: new Date(2023,4,22,12,11,11),
-     endTime: new Date(2023,4,22,14,11,11),
-     img: 'https://picsum.photos/200',
-     allDay: false
-
-   },
-    {
-     title: 'Viaje de pedro',
-     description: 'pedro viaja a roma',
-     startTime: new Date(2023,4,2,12,11,11),
-     endTime: new Date(2023,4,2,14,11,11),
-     img: 'https://picsum.photos/200',
-     allDay: false
-
-   },
-   {
-     title: 'What is Lorem Ipsum?',
-     description: 'What is Lorem Ipsum?',
-     startTime: new Date(2021,10,21,2,11,11),
-     endTime: new Date(2021,10,21,4,11,11),
-     img: 'https://picsum.photos/200',
-     allDay: false
-
-   },
-   {
-     title: 'What is Lorem Ipsum?',
-     description: 'What is Lorem Ipsum?',
-     startTime: new Date(2021,10,20,12,11,11),
-     endTime: new Date(2021,10,20,14,11,11),
-     img: 'https://picsum.photos/200',
-     allDay: false
-
-     
-   } 
-   ];
   eventCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 
   constructor(public modalController: ModalController, private router: Router, private alertController: AlertController) { 
@@ -271,11 +221,8 @@ export class EventsPage implements OnInit {
       endTime: new Date().toISOString(),
       img:'',
 }
-
-  }
-
-  presentAlertPrompt(){
+}
+ Configuraciones(){
     this.router.navigate(['settings'])
-
-  }
+  }
 }

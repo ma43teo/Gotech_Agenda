@@ -13,15 +13,25 @@ export class RegisterPage implements OnInit {
   Usuario ='';
   Clave='';
   cclave='';
-
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(private autenticador: AngularFireAuth,
               private router: Router,
               public alertController: AlertController){ }
 
   async Register() {
-   const { Usuario, Clave, cclave } = this;
-    if (Clave !== cclave) {
+    const { Usuario, Clave, cclave } = this;
+
+    if (this.checkFields()) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor, complete todos los campos',
+        buttons: ['OK']
+      });
+      await alert.present(); 
+    }
+    else if (Clave !== cclave) {
       const alert = await this.alertController.create({
         header: 'Error',
         message: 'Contraseñas no coinciden',
@@ -40,18 +50,20 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
+  
   Cancel(){
     this.router.navigate(['login'])
   }
+  
   togglePassword() {
-    const passwordField: any = document.getElementById('password-field');
-    const icon: any = document.getElementById('password-icon');
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
-      icon.name = 'eye';
-    } else {
-      passwordField.type = 'password';
-      icon.name='eye-off';
-    }
+    this.hidePassword = !this.hidePassword;
   }
+  
+  toggleConfirmPassword() {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+  
+  checkFields() {
+    return this.Usuario.trim() === '' || this.Clave.trim() === '' || this.cclave.trim() === '';
+  }
 }

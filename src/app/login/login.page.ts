@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
    
   Usuario= '';
   Clave='';
+  hidePassword = true;
   constructor(private autenticador: AngularFireAuth,
               private roter: Router,
               public alertController: AlertController) { }
@@ -46,14 +47,6 @@ export class LoginPage implements OnInit {
 }
 }
 togglePassword() {
-  const passwordField: any = document.getElementById('password-field');
-  const icon: any = document.getElementById('password-icon');
-  if (passwordField.type === 'password') {
-    passwordField.type = 'text';
-    icon.name = 'eye';
-  } else {
-    passwordField.type = 'password';
-    icon.name = 'eye-off';
-}
+  this.hidePassword = !this.hidePassword;
 }
 }

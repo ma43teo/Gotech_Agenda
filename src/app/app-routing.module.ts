@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'event-details',
     loadChildren: () => import('./pages/school/event-details/event-details.module').then( m => m.EventDetailsPageModule)
   },
+  {
+    path: 'camara',
+    loadChildren: () => import('./camara/camara.module').then( m => m.CamaraPageModule)
+  },
  
 ];
 

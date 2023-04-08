@@ -1,82 +1,98 @@
-
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-   
-  }
-  /* Alinear el título en el centro del encabezado */
-  ion-title {
-    text-align: center;
-  }
-  
-  /* Cambiar el tamaño y el estilo de la fuente del título */
-  ion-title {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Cambiar el color del texto del título */
-  ion-title {
-    color: #ffffff;
-  }
-  
-  /* Cambiar el color de fondo de la barra de herramientas */
-  ion-toolbar {
-    background-color: #20d24a;
-  }
-
-
-img {
-  display: block;
-  margin: 0 auto;
-  width: 200px;
-  border-radius: 100%;
-  max-width: 100%; /* para asegurarse de que la imagen no sea más ancha que el contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ 
 }
-
-/* Estilos para el título en el header */
+/* Alinear el título en el centro del encabezado */
 ion-title {
   text-align: center;
 }
 
+/* Cambiar el tamaño y el estilo de la fuente del título */
+ion-title {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+/* Cambiar el color del texto del título */
+ion-title {
+  color: #ffffff;
+}
+
+/* Cambiar el color de fondo de la barra de herramientas */
+ion-toolbar {
+  background-color: #20d24a;
+}
+
+
+img {
+display: block;
+margin: 0 auto;
+width: 150px;
+border-radius: 100%;
+max-width: 100%;
+margin-top: 15px;
+
+}
+
+/* Estilos para el título en el header */
+ion-title {
+text-align: center;
+}
+
 /* Estilos para los labels y los inputs */
 ion-label {
-  display: block;
-  margin-bottom: 5px;
-  border-radius: 5%;
+display: block;
+margin-bottom: 5px;
+border-radius: 5%;
 }
 
 ion-input {
-  width: 90%;
-  border:solid 5px #063ecb;
-  border-radius: 10px;
-  margin: 5px;
-  margin-left:20px;
-  height:50px;
-  
-   /* añadido para tener en cuenta el padding y el borde en el ancho del elemento */
+width: 90%;
+border:solid 5px #063ecb;
+border-radius: 10px;
+margin: 15px;
+margin-left:20px;
+height:50px;
+
+ /* añadido para tener en cuenta el padding y el borde en el ancho del elemento */
 }
 
 /* Estilos para los botones */
 ion-button {
-  display: block;
-  margin: 10px auto;
-  width: 73%;
-  margin-top: 20px;
+display: block;
+margin: 10px auto;
+width: 85%;
+margin-top: 30px;
 }
 
 /* Estilos para el botón de olvidar contraseña */
 ion-input.usu{
-  width:73%;
-  margin: 5px;
-  margin-left:40px;
-  
+width:73%;
+margin-left:36px;
+margin-top: 20px;
 }
 ion-input.recuperar{
-  width:73%;
-  margin-left:40px;
-  margin-top: 20px;
+width:73%;
+margin-left:37px;
+margin-top: 26px;
+}
+
+h1{
+text-align: center;
+}
+
+.tam{
+width: 50%;
+}
+
+ion-card{
+object-fit: cover;
+box-shadow: 0px 0px 5px 5px #a6aaa6;
+-webkit-box-shadow: 0px 0px 5px 5px #beccbe;
+transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
 }

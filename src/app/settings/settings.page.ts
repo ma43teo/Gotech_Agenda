@@ -36,4 +36,8 @@ cambio(){
   Cancel(){
     this.router.navigate(['events'])
   }
+
+  Foto(){
+    this.router.navigate(['camara'])
+  }
 }

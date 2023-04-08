@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>camara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-button expand="block" (click)="openCamera()">Abrir camara</ion-button>
+    <img [src]="image" *ngIf="image"> 
+  </div>
+</ion-content>
