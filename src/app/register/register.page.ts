@@ -25,12 +25,28 @@ export class RegisterPage implements OnInit {
 
     if (this.checkFields()) {
       const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Por favor, complete todos los campos',
-        buttons: ['OK']
+          header: 'Error',
+          message: 'Por favor, complete todos los campos',
+          buttons: ['OK']
       });
-      await alert.present(); 
-    }
+      await alert.present();
+  }
+  else if (Clave.length < 6) {
+      const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'La contraseña debe tener al menos 6 caracteres',
+          buttons: ['OK']
+      });
+      await alert.present();
+  }
+  else if (Clave.length > 10) {
+      const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'La contraseña no puede tener más de 10 caracteres',
+          buttons: ['OK']
+      });
+      await alert.present();
+  }
     else if (Clave !== cclave) {
       const alert = await this.alertController.create({
         header: 'Error',
@@ -38,7 +54,16 @@ export class RegisterPage implements OnInit {
         buttons: ['OK']
       });
       await alert.present(); 
-    }else{
+    }
+    else if (!this.checkEmail(Usuario)) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'El correo electrónico no es válido',
+        buttons: ['OK']
+      });
+      await alert.present(); 
+    }
+    else{
       try{
         const result = this.autenticador.createUserWithEmailAndPassword( Usuario, Clave)
         .then(() => this.router.navigate(['events'])) ;
@@ -47,7 +72,10 @@ export class RegisterPage implements OnInit {
       }
     }
   }
-
+  checkEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
   ngOnInit() {
   }
   

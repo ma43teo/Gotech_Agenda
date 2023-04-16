@@ -32,7 +32,7 @@ export interface IEvent {
 })
 
 export class EventsPage implements OnInit {
-  
+  event: any = {};
   minDate: string;
 
   allEvents: IEvent[];
@@ -58,6 +58,9 @@ export class EventsPage implements OnInit {
 
   @ViewChild(CalendarComponent, { static: false }) myCal!: CalendarComponent;
 
+
+  myData = [
+   ];
   eventCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 
   constructor(public modalController: ModalController, private router: Router, private alertController: AlertController) { 
@@ -77,10 +80,11 @@ export class EventsPage implements OnInit {
     firebase.initializeApp(firebaseConfig);
   
     // Crea una referencia a la colección de eventos en Firebase
-    this.eventCollection = firebase.firestore().collection('eventos');
+    this.eventCollection = firebase.firestore().collection('events');
   
   }
-  
+
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alert',
@@ -92,22 +96,25 @@ export class EventsPage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() {
-    this.eventCollection.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const eventData = doc.data();
-        const event: IEvent = {
-          title: eventData['title'],
-          description: eventData['description'],
-          startTime: eventData['startTime'].toDate(),
-          endTime: eventData['endTime'].toDate(),
-          img: eventData['img'],
-          allDay: eventData['allDay']
-        };
-        this.allEvents.push(event);
-      });
+  async ngOnInit() {
+    const querySnapshot = await this.eventCollection.get();
+    querySnapshot.forEach((doc) => {
+      const eventData = doc.data();
+      const event: IEvent = {
+        title: eventData['title'],
+        description: eventData['description'],
+        startTime: eventData['startTime'].toDate(),
+        endTime: eventData['endTime'].toDate(),
+        img: eventData['img'],
+        allDay: eventData['allDay']
+      };
+      this.allEvents.push(event);
     });
+  
+    this.today();
   }
+  
+  
 
 
   onViewTitleChanged(title:string){
@@ -157,7 +164,7 @@ export class EventsPage implements OnInit {
     if (eventDate < now) {
       const alert = await this.alertController.create({
         header: 'Fecha inválida',
-        message: 'El evento no puede ser guardado en una fecha anterior a la actual. ¿Desea continuar?',
+        message: 'El evento no puede ser guardado en una fecha anterior a la actual.',
         buttons: [
           {
             text: 'Cancelar',
@@ -221,8 +228,14 @@ export class EventsPage implements OnInit {
       endTime: new Date().toISOString(),
       img:'',
 }
-}
- Configuraciones(){
-    this.router.navigate(['settings'])
+
   }
+
+
+ 
+  Configuraciones(){
+    this.router.navigate(['settings'])
+
 }
+}
+

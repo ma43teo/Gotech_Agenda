@@ -6,94 +6,96 @@
         <ion-icon class="configurar" slot="icon-only" name="cog"></ion-icon>
       </ion-button>
     </ion-buttons>
-  </ion-toolbar>
+ </ion-toolbar>
+ 
  <ion-toolbar color="primary">
-<ion-buttons slot="start">
-        <ion-menu-button mode="md" color="light"></ion-menu-button>
-          <ion-button class="contenedor" color="light" (click)="today()">Hoy</ion-button>
-          <ion-button class="contenedor" color="light" (click)="changeMode('month')">Mes</ion-button>
-          <ion-button class="contenedor" color="light" (click)="changeMode('week')">Semana</ion-button>
-           <ion-button class="contenedor" color="light" (click)="changeMode('day')">Dia</ion-button>  
-        </ion-buttons>
-  
-  
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
+  <ion-buttons slot="start">
+    <ion-menu-button mode="md" color="light"></ion-menu-button>
+    <ion-button color="light" (click)="today()">Hoy</ion-button>
+    <ion-button color="light" (click)="changeMode('month')">Mes</ion-button>
+    <ion-button color="light" (click)="changeMode('week')">Semana</ion-button>
+     <ion-button color="light" (click)="changeMode('day')">Dia</ion-button>
+
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+<div *ngIf="showAddEvent" class="ion-padding">
+  <ion-item>
     
+    <ion-label><b>Titúlo:</b></ion-label>
+    <ion-input type="text" placeholder="Titúlo" [(ngModel)]="newEvent.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Descripción:</b></ion-label>
+    <ion-input type="text" placeholder="Descripción" [(ngModel)]="newEvent.description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Imagen:</b></ion-label>
+    <ion-input type="text" placeholder="Imagen" [(ngModel)]="newEvent.img"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Fecha de inicio</b></ion-label>
+    <ion-datetime doneText="OK" cancelText="Cancel" placeholder="Fecha de inicio" displayFormat="DD/MM/YYYY HH:mm"  placeholder="Fecha de inicio"pickerFormat="MMM D HH:mm"
+      [(ngModel)]="newEvent.startTime" [min]="minDate"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Fecha final</b></ion-label>
+    <ion-datetime doneText="OK" cancelText="Cancel" placeholder="Fecha final" displayFormat="DD/MM/YYYY HH:mm" placeholder="Fecha final" pickerFormat="MMM D HH:mm"
+      [(ngModel)]="newEvent.endTime" [min]="minDate"></ion-datetime>
+  </ion-item>
   
-    <div *ngIf="showAddEvent" class="ion-padding">
-      <ion-item>
-        
-        <ion-label><b>Titulo:</b></ion-label>
-        <ion-input type="text" placeholder="Title" [(ngModel)]="newEvent.title"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Descripcion:</b></ion-label>
-        <ion-input type="text" placeholder="Description" [(ngModel)]="newEvent.description"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Imagen:</b></ion-label>
-        <ion-input type="text" placeholder="Image" [(ngModel)]="newEvent.img"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Fecha de inicio</b></ion-label>
-        <ion-datetime doneText="OK" cancelText="Cancel" i18n displayFormat="DD/MM/YYYY HH:mm" pickerFormat="MMM D HH:mm"
-          [(ngModel)]="newEvent.startTime" [min]="minDate"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Fecha final</b></ion-label>
-        <ion-datetime doneText="OK" cancelText="Cancel" displayFormat="DD/MM/YYYY HH:mm" pickerFormat="MMM D HH:mm"
-          [(ngModel)]="newEvent.endTime" [min]="minDate"></ion-datetime>
-      </ion-item>
-      
-      <ion-button color="danger" expand="block" (click)="addEvent()">Add Event</ion-button>
-    </div>
-   
-    <ion-row *ngIf="!showAddEvent">
-      <ion-col size="2">
-        <ion-button fill="clear" (click)="back()">
-          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
+  <ion-button color="danger" expand="block" (click)="addEvent()">Agregar Evento</ion-button>
   
-      <ion-col size="8" class="ion-text-center">
-        <h2>{{ currentMonth }}</h2>
-      </ion-col>
-  
-      <ion-col size="2">
-        <ion-button fill="clear" (click)="next()">
-          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-  
-    </ion-row>
-  
-    <ion-card>
-      <calendar 
-      *ngIf="!showAddEvent"
-      id="myCal"
-      [eventSource]="allEvents"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      startHours="0"
-      noEventLable="There is no Event to display"
-      endHpurs="23"
-      [step]="30"
-      [startingDayWeek]="1"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onEventSelected)="onEventSelected($event)"
-      [timeInterval]="30"
-      > 
-  </calendar>
-    </ion-card>
-     
-  
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="showHideForm()">
-      <ion-icon *ngIf="!showAddEvent" name="add"></ion-icon>
-      <ion-icon *ngIf="showAddEvent" name="close"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  </ion-content>
+
+</div>
+
+<ion-row *ngIf="!showAddEvent">
+  <ion-col size="2">
+    <ion-button fill="clear" (click)="back()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+  <ion-col size="8" class="ion-text-center">
+    <h2>{{ currentMonth }}</h2>
+  </ion-col>
+
+  <ion-col size="2">
+    <ion-button fill="clear" (click)="next()">
+      <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+</ion-row>
+
+  <calendar 
+  *ngIf="!showAddEvent"
+  id="myCal"
+  [eventSource]="allEvents"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  startHours="0"
+  noEventLable="There is no Event to display"
+  endHpurs="23"
+  [step]="30"
+  [startingDayWeek]="1"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onEventSelected)="onEventSelected($event)"
+  [timeInterval]="30"
+  > 
+</calendar>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab-button (click)="showHideForm()">
+  <ion-icon *ngIf="!showAddEvent" name="add"></ion-icon>
+  <ion-icon *ngIf="showAddEvent" name="close"></ion-icon>
+</ion-fab-button>
+</ion-fab>
+
+
+
+</ion-content>

@@ -1,18 +1,18 @@
 <img src="https://mateogutierrez.neocities.org/img/Fondoo.png" alt="Imagen de encabezado">
 
 <ion-card>
-  <h1>Registrarse</h1>
+  <h1>Registarse</h1>
   <div class="container">
     <ion-content padding>
-      <ion-input class="usu"[(ngModel)]="Usuario" placeholder="Correo Electronico"></ion-input>
+      <ion-input class="usu"[(ngModel)]="Usuario" placeholder="Correo Electronico" maxlength="30"></ion-input>
       <br/>
       <ion-item>
-        <ion-input type="{{ hidePassword ? 'password' : 'text' }}" placeholder="Contraseña" [(ngModel)]="Clave" id="password-field"></ion-input>
+        <ion-input type="{{ hidePassword ? 'password' : 'text' }}" placeholder="Contraseña" [(ngModel)]="Clave" id="password-field" maxlength="10"></ion-input>
         <ion-icon slot="end" name="{{ hidePassword ? 'eye-off' : 'eye' }}" id="password-icon" (click)="togglePassword()"></ion-icon>
       </ion-item>
       
       <ion-item>
-        <ion-input type="{{ hideConfirmPassword ? 'password' : 'text' }}" placeholder="Confirmar Contraseña" [(ngModel)]="cclave"></ion-input>
+        <ion-input type="{{ hideConfirmPassword ? 'password' : 'text' }}" placeholder="Confirmar Contraseña" [(ngModel)]="cclave"  maxlength="10"></ion-input>
         <ion-icon slot="end" name="{{ hideConfirmPassword ? 'eye-off' : 'eye' }}" id="confirm-password-icon" (click)="toggleConfirmPassword()"></ion-icon>
       </ion-item>
       
