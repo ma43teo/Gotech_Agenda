@@ -8,7 +8,6 @@ import '@firebase/firestore';
 
 
 
-
 export interface IEvent {
   
   allDay: boolean;
@@ -31,32 +30,17 @@ export class EventDetailsPage implements OnInit {
   startTime: string;
   endTime: string;
   event: any = {};
-  editing: boolean = false;
 
+
+  allEvents: any;
   doc:any;
   eventCollection: AngularFirestoreCollection<IEvent>;
   allDay: any;
 
-  newEvent: any = {
-    title:'',
-    description:'',
-    startTime:'',
-    endTime:'',
-    img:'',
-    
-
-  };
-  allEvents!: IEvent[];
-
   constructor(public modalController: ModalController,private router: Router,private alertController: AlertController,
-    public navParams: NavParams,
-    private firestore: AngularFirestore) {
-      
-this.eventCollection = this.firestore.collection<IEvent>('events');
-
-this.eventCollection.valueChanges().subscribe(events => {
-this.allEvents = events;
-});
+              public navParams: NavParams,
+              private firestore: AngularFirestore) {
+                this.eventCollection = this.firestore.collection<IEvent>('Eventos');
               
     this.title = navParams.get('title');
     this.img = navParams.get('img');
@@ -81,7 +65,6 @@ appId: "1:179527070115:web:debc379e0b5efcbb126a16"
   
 
   ngOnInit() {
-  
   }
 
   close() {
@@ -131,54 +114,7 @@ appId: "1:179527070115:web:debc379e0b5efcbb126a16"
     await alert.present();
 }
 
-
-
-
-
-
-async updateEvent() {
-  const docRef = this.eventCollection.ref.where('title', '==', this.newEvent.title).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      doc.ref.update({
-        title: this.newEvent.title,
-        description: this.newEvent.description,
-        img: this.newEvent.img,
-        startTime: this.newEvent.startTime,
-        endTime: this.newEvent.endTime
-      }).then(() => {
-        console.log('Documento actualizado');
-        this.modalController.dismiss();
-        location.reload();
-        // Vuelve a obtener la lista de eventos
-        this.allEvents;
-      }).catch((error) => {
-        console.error('Error actualizando documento: ', error);
-      });
-    });
-  });
 }
-async openEditEventModal(event: Event) {
-  const modal = await this.modalController.create({
-    component: EventDetailsPage ,
-    componentProps: {
-      event: event
-    }
-  });
-
-  modal.present();
-}
-startEditing() {
-  this.editing = true;
-}
-
-cancelEditing() {
-  this.editing = false;
-}
- 
-}
-
-
-
 
 
 

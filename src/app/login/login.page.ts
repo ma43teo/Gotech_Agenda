@@ -9,32 +9,43 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-   
-  Usuario= '';
-  Clave='';
-  hidePassword = true;
+
+  Usuario = '';
+  Clave = '';
+
   constructor(private autenticador: AngularFireAuth,
               private roter: Router,
               public alertController: AlertController) { }
-  
-  Login(){
-    const {Usuario, Clave} = this;
-    this.autenticador.signInWithEmailAndPassword( Usuario, Clave)
-    .then((res:any) => this.roter.navigate(['events']))
-    .catch((error:any) => console.dir(error));
-    }
-  ngOnInit() {
 
+  correoRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  async Login() {
+    const {Usuario, Clave} = this;
+    try {
+      await this.autenticador.signInWithEmailAndPassword( Usuario, Clave);
+      this.roter.navigate(['events']);
+    } catch (error) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Correo o contraseña incorrecta. Por favor intente nuevamente',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
   }
-  Register(){
-   this.roter.navigate(['register']);
+
+  ngOnInit() {}
+
+  Register() {
+    this.roter.navigate(['register']);
   }
-  
-  Password(){
+
+  Password() {
     this.roter.navigate(['recover-password']);
-   }
-   async validarCampos() {
-    if(!this.Usuario || !this.Clave){
+  }
+
+  async validarCampos() {
+    if (!this.Usuario || !this.Clave) {
       // Muestra una alerta si los campos están vacíos
       const alert = await this.alertController.create({
         header: 'Error',
@@ -42,11 +53,28 @@ export class LoginPage implements OnInit {
         buttons: ['OK']
       });
       await alert.present();
-    }else{
+    } else if (!this.correoRegex.test(this.Usuario)) {
+      // Muestra una alerta si el correo electrónico no es válido
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor ingrese un correo electrónico válido',
+        buttons: ['OK']
+      });
+      await alert.present();
+    } else {
       this.Login();
-}
-}
-togglePassword() {
-  this.hidePassword = !this.hidePassword;
-}
+    }
+  }
+
+  togglePassword() {
+    const passwordField: any = document.getElementById('password-field');
+    const icon: any = document.getElementById('password-icon');
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      icon.name = 'eye';
+    } else {
+      passwordField.type = 'password';
+      icon.name = 'eye-off';
+    }
+  }
 }

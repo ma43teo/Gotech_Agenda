@@ -4,10 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!editing">
-  <!-- Mostrar datos -->
+<ion-content>
   <ion-card>
-    
     <img src="{{ img }}">
     <ion-card-header>
       <ion-card-title>{{ title }}</ion-card-title>
@@ -18,34 +16,18 @@
       <p>End Time: {{ endTime }}</p>
     </ion-card-content>
   </ion-card>
-  <ion-button color="danger" (click)="deleteDocumentByTitle(title)">Eliminar</ion-button>
-  <ion-button (click)="startEditing()">Editar</ion-button>
-</ion-content>
+  <ion-list>
+ <ion-label>
+    </ion-label>
+</ion-list>
+<ion-button color="danger" (click)="deleteDocumentByTitle(title)">Eliminar</ion-button>
 
-<ion-content *ngIf="editing">
-  <ion-card>
-    <img src="{{ newEvent.img }}">
-    <ion-card-header>
-      <ion-card-title>
-        <ion-input type="text" placeholder="Título" [(ngModel)]="newEvent.title"></ion-input>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-textarea placeholder="Descripción" [(ngModel)]="newEvent.description"></ion-textarea>
-      <ion-item>
-        <ion-label>Imagen</ion-label>
-        <ion-input type="text" placeholder="URL de la imagen" [(ngModel)]="newEvent.img"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Start Time</ion-label>
-        <ion-datetime display-format="DD/MM/YYYY HH:mm" [(ngModel)]="newEvent.startTime"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>End Time</ion-label>
-        <ion-datetime display-format="DD/MM/YYYY HH:mm" [(ngModel)]="newEvent.endTime"></ion-datetime>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <ion-button (click)="updateEvent()">Guardar cambios</ion-button>
-  <ion-button (click)="cancelEditing()">Cancelar</ion-button>
-</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+   
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

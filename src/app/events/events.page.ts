@@ -80,7 +80,7 @@ export class EventsPage implements OnInit {
     firebase.initializeApp(firebaseConfig);
   
     // Crea una referencia a la colección de eventos en Firebase
-    this.eventCollection = firebase.firestore().collection('events');
+    this.eventCollection = firebase.firestore().collection('Eventos');
   
   }
 
@@ -232,7 +232,6 @@ export class EventsPage implements OnInit {
   }
 
 
- 
   Configuraciones(){
     this.router.navigate(['settings'])
 
